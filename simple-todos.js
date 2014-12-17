@@ -47,7 +47,7 @@ if (Meteor.isClient) {
       Meteor.call("setChecked", this._id, !this.checked);
     },
     "click .delete": function() {
-      Meteor.call("deleteTask", this._id)
+      Meteor.call("deleteTask", this._id);
     }
   });
 
@@ -74,6 +74,6 @@ Meteor.methods({
     Tasks.remove(taskId);
   },
   setChecked: function(taskId, setChecked) {
-    Tasks.update
+    Tasks.update(taskId, { $set: { checked: setChecked } });
   }
 });
